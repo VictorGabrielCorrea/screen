@@ -7,4 +7,4 @@ indent() {
 }
 
 echo "-----> Installing screen... "
-apt-get install screen -y
+apt install screen -y
