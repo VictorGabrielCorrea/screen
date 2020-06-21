@@ -1,0 +1,26 @@
+{
+  "name": "Minecraft",
+  "description": "A Minecraft Server on Heroku",
+  "keywords": [
+    "games",
+    "minecraft"
+  ],
+  "repository": "https://github.com/VictorGabrielCorrea/screen",
+  "env": {
+    "MINECRAFT_EULA": {
+      "description": "Do you accept the Minecraft EULA?",
+      "value": "true"
+    }
+  },
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    },
+    {
+      "url": "heroku/jvm"
+    },
+    {
+      "url": "heroku-community/inline"
+    }
+  ]
+}
