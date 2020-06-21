@@ -6,5 +6,15 @@ indent() {
   sed -u 's/^/       /'
 }
 
+APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
+
 echo "-----> Installing screen... "
-apt install screen -y | indent
+apt-get $APT_OPTIONS update -y | indent
+apt-get $APT_OPTIONS -y --allow-downgrades --allow-remove-essential --allow-change-held-packages -d install --reinstall screen | indent
+mkdir -p $BUILD_DIR/.apt/var/run/screen
+
+mkdir -p $BUILD_DIR/.profile.d
+cat <<EOF >$BUILD_DIR/.profile.d/000_apt.sh
+export PATH="\$HOME/.apt/usr/bin:\$PATH"
+export SCREENDIR="\$HOME/.apt/var/run/screen"
+EOF
